@@ -1,7 +1,7 @@
 open Nocrypto.Uncommon
 open Nocrypto.Hash
 
-open Core
+open Types
 open State
 
 let (<+>) = Utils.Cs.(<+>)

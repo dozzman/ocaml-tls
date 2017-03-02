@@ -45,7 +45,7 @@ module Make (F : Mirage_flow_lwt.S) : sig
     (flow, write_error) result Lwt.t
 
   (** [epoch flow] extracts information of the established session. *)
-  val epoch : flow -> (Tls.Core.epoch_data, unit) result
+  val epoch : flow -> (Tls.Types.epoch_data, unit) result
 
 end
   with module FLOW = F
