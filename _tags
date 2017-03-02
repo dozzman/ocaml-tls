@@ -20,3 +20,7 @@ true : package(cstruct nocrypto result x509 sexplib)
 <lwt/examples/*> : package(lwt lwt.unix str nocrypto.lwt)
 
 <mirage/*> : package(mirage-flow-lwt mirage-kv-lwt mirage-clock lwt ptime)
+
+<async/*> : package(async core threads)
+<async/*> : thread
+<async> : include
