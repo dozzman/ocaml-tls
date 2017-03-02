@@ -5,26 +5,32 @@ type priv = X509.t list * Nocrypto.Rsa.priv
 
 type authenticator = X509.Authenticator.a
 
-let read_cstruct f = f |> Reader.file_contents >>| Cstruct.of_string
+let read_cstruct f =
+  f
+  |> Reader.file_contents
+  >>| (fun s -> Cstruct.of_string s)
 
 let private_of_pems ~cert ~priv_key =
   let open X509.Encoding.Pem in
-  Deferred.both (read_cstruct cert) (read_cstruct priv)
-  >>| (fun (cert, priv) ->
-      let cert = Certifact.of_pem_cstruct cert in
-      let (`Rsa key) = Private_key.of_pem_cstruct1 in
+  Deferred.both (read_cstruct cert) (read_cstruct priv_key)
+  >>| (fun (cert, priv_key) ->
+      let cert = Certificate.of_pem_cstruct cert in
+      let (`RSA key) = Private_key.of_pem_cstruct1 priv_key in
       (cert, key)
     )
 
 let certs_of_pem path =
-  read_cstruct >>| X509.Encoding.Pem.Certificate.of_pem_cstruct
+  path
+  |> read_cstruct
+  >>| X509.Encoding.Pem.Certificate.of_pem_cstruct
 
 let certs_of_pem_dir path =
   path
   |> Sys.readdir
-  |> Array.filter ~f:(fun x -> Filename.extension x = "crt")
-  |> Array.to_list
-  |> Deferred.List.concat_map ~how:`Parallel (fun f ->
+  >>| (Fn.compose
+         Array.to_list
+         (Array.filter ~f:(fun x -> Caml.Filename.extension x = "crt")))
+  >>= Deferred.List.concat_map ~how:`Parallel ~f:(fun f ->
       certs_of_pem (Filename.concat path f)
     )
 
