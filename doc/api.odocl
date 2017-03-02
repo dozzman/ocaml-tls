@@ -2,7 +2,7 @@ lib/Engine
 lib/Config
 lib/Packet
 lib/Ciphersuite
-lib/Core
+lib/Types
 lwt/Tls_lwt
 lwt/X509_lwt
 mirage/Tls_mirage
