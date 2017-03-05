@@ -5,7 +5,7 @@ open Types
 open State
 
 
-type state = State.state
+type state = State.state [@@deriving sexp]
 
 type error = State.error
 type fatal = State.fatal

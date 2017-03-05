@@ -38,7 +38,7 @@
 
 (** The abstract type of a TLS state, with
     {{!Encoding.Pem.Certificate}encoding and decoding to PEM}. *)
-type state
+type state [@@deriving sexp_of]
 
 (** {1 Constructors} *)
 
@@ -61,7 +61,7 @@ type error = [
   | `NoMatchingCertificateFound of string
   | `NoCertificateConfigured
   | `CouldntSelectCertificate
-]
+] [@@deriving sexp]
 
 (** failures from received garbage or lack of features *)
 type fatal = [
@@ -98,13 +98,13 @@ type fatal = [
   | `InvalidCertificateUsage
   | `InvalidCertificateExtendedUsage
   | `InvalidSession
-]
+] [@@deriving sexp]
 
 (** type of failures *)
 type failure = [
   | `Error of error
   | `Fatal of fatal
-]
+] [@@deriving sexp]
 
 (** [alert_of_failure failure] is [alert], the TLS alert type for this failure. *)
 val alert_of_failure : failure -> Packet.alert_type
@@ -165,7 +165,7 @@ val reneg                 : state -> (state * Cstruct.t) option
 type epoch = [
   | `InitialEpoch
   | `Epoch of Types.epoch_data
-]
+] [@@deriving sexp]
 
 (** [epoch_of_sexp sexp] is [epoch], the unmarshalled [sexp]. *)
 val epoch_of_sexp : Sexplib.Sexp.t -> epoch
