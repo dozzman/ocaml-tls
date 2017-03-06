@@ -1,6 +1,5 @@
 (** X.509 certificate handling using Async. *)
 
-open Core.Std
 open Async.Std
 
 (** private material: a certificate chain and a RSA private key *)
