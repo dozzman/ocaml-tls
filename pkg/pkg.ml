@@ -33,4 +33,6 @@ let () =
     Pkg.test ~run:false ~cond:lwt "lwt/examples/echo_client" ;
     Pkg.test ~run:false ~cond:lwt "lwt/examples/test_server" ;
     Pkg.test ~run:false ~cond:lwt "lwt/examples/test_client" ;
+    Pkg.test ~run:false ~cond:async "async/examples/test_async_client" ;
+    Pkg.test ~run:false ~cond:async "async/examples/test_async_server" ;
   ]

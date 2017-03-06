@@ -21,6 +21,6 @@ true : package(cstruct nocrypto result x509 sexplib)
 
 <mirage/*> : package(mirage-flow-lwt mirage-kv-lwt mirage-clock lwt ptime)
 
-<async/*> : package(async core threads)
-<async/*> : thread
-<async> : include
+<async/**> : package(async core threads cstruct.async logs fmt.tty logs.fmt)
+<async/**> : thread
+<async/**> : include
