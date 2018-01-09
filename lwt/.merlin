@@ -1,2 +1,27 @@
-PKG lwt.unix ptime.clock.os
-REC
+B ../_build/default/lib
+B ../_build/default/lwt
+FLG -w -40
+PKG asn1-combinators
+PKG astring
+PKG bigarray
+PKG bytes
+PKG cstruct
+PKG cstruct-lwt
+PKG cstruct.lwt
+PKG lwt
+PKG lwt.log
+PKG lwt.unix
+PKG nocrypto
+PKG nocrypto.lwt
+PKG nocrypto.unix
+PKG ptime
+PKG ptime.clock.os
+PKG result
+PKG sexplib
+PKG sexplib.0
+PKG threads
+PKG threads.posix
+PKG unix
+PKG x509
+PKG zarith
+S ../lib

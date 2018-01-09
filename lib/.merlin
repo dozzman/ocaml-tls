@@ -1,0 +1,16 @@
+B ../_build/default/lib
+FLG -open Tls -w -40
+FLG -ppx '/Users/dozza/kudi/ocaml-tls/_build/default/.ppx/ppx_cstruct+ppx_sexp_conv/ppx.exe --as-ppx --cookie '\''library-name="tls"'\'' -no-check'
+PKG asn1-combinators
+PKG astring
+PKG bigarray
+PKG bytes
+PKG cstruct
+PKG nocrypto
+PKG ptime
+PKG result
+PKG sexplib
+PKG sexplib.0
+PKG unix
+PKG x509
+PKG zarith
